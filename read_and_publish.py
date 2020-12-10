@@ -12,7 +12,7 @@ GPIO.cleanup()
 # AWS IoT certificate based connection
 myMQTTClient = AWSIoTMQTTClient("123afhlss456")
 myMQTTClient.configureEndpoint("a167lgi887r2fi-ats.iot.us-east-1.amazonaws.com", 8883)
-myMQTTClient.configureCredentials("/home/pi/root-CA.crt", "/home/pi/project-private.pem.key", "/home/pi/project-certificate.pem.crt")
+myMQTTClient.configureCredentials("/home/pi/rasp_pi_iot/vars/rootCA.pem", "/home/pi/rasp_pi_iot/vars/project-private.pem.key", "/home/pi/rasp_pi_iot/vars/6b1c526b1e-certificate.pem.crt")
 myMQTTClient.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
 myMQTTClient.configureDrainingFrequency(2)  # Draining: 2 Hz
 myMQTTClient.configureConnectDisconnectTimeout(10)  # 10 sec
