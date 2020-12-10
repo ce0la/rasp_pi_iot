@@ -20,7 +20,7 @@ myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
  
 #connect and publish
 myMQTTClient.connect()
-myMQTTClient.publish("thing01/info", "connected", 0)
+myMQTTClient.publish("project/info", "connected", 0)
  
 #loop and publish sensor reading
 
@@ -32,7 +32,7 @@ while 1:
     if result.is_valid():
         payload = '{ "timestamp": "' + now_str + '","temperature": ' + str(result.temperature) + ',"humidity": '+ str(result.humidity) + ' }'
         print payload
-        myMQTTClient.publish("thing01/data", payload, 0)
+        myMQTTClient.publish("project/data", payload, 0)
         sleep(4)
     else:
         print (".")
