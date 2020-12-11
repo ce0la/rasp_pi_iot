@@ -34,10 +34,11 @@ while 1:
     #result = instance.read()
     #if result.is_valid():
     if isinstance(data, float):
-        #payload2 = '{ "timestamp": "' + now_str + '","temperature": ' + str(result.temperature) + ',"humidity": '+ str(result.humidity) + ' }'
-        payload = {"temperature" : data}
-        print(payload)
-        myMQTTClient.publish("test/testing", json.dumps(payload), 1)
+        payload = '{ "timestamp": "' + now_str + '","temperature": ' + str(data) + ' }'
+#        payload = {"temperature" : data}
+        print(payload2)
+        myMQTTClient.publish("test/testing", payload)
+        print("Published: '" + payload + "' to the topic: " + "'test/testing'")
         sleep(4)
     else:
         print (".")
