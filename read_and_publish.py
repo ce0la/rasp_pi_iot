@@ -33,7 +33,7 @@ while 1:
     data = os.system("vcgencmd measure_temp | egrep -o '[0-9]*\.[0-9]*'")
     #result = instance.read()
     #if result.is_valid():
-    if data.is_valid():
+    if isinstance(data):
         #payload2 = '{ "timestamp": "' + now_str + '","temperature": ' + str(result.temperature) + ',"humidity": '+ str(result.humidity) + ' }'
         payload = {"temperature" : data}
         print(payload)
