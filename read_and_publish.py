@@ -12,9 +12,9 @@ GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
  
 # AWS IoT certificate based connection
-myMQTTClient = AWSIoTMQTTClient("123afhlss456")
-myMQTTClient.configureEndpoint("a167lgi887r2fi-ats.iot.us-east-1.amazonaws.com", 8883)
-myMQTTClient.configureCredentials("/home/pi/rasp_pi_iot/certificates/root.pem", "/home/pi/rasp_pi_iot/certificates/d8f0107328-private.pem.key", "/home/pi/rasp_pi_iot/certificates/d8f0107328-certificate.pem.crt")
+myMQTTClient = AWSIoTMQTTClient("kingsleyIoT")
+myMQTTClient.configureEndpoint("a3d894tkx8ah7h-ats.iot.us-east-1.amazonaws.com", 8883)
+myMQTTClient.configureCredentials("/home/pi/iot-project-publish/certificates/root.pem", "/home/pi/iot-project-publish/certificates/ff7f50095f-private.pem.key", "/home/pi/iot-project-publish/certificates/ff7f50095f-certificate.pem.crt")
 myMQTTClient.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
 myMQTTClient.configureDrainingFrequency(2)  # Draining: 2 Hz
 myMQTTClient.configureConnectDisconnectTimeout(10)  # 10 sec
@@ -23,7 +23,7 @@ myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 #connect and publish
 myMQTTClient.connect()
 print("Connected to AWS IoT")
-myMQTTClient.publish("test/testing", "connected", 0)
+myMQTTClient.publish("project224/temp_data", "connected", 0)
 
 #loop and publish sensor reading
 
@@ -39,8 +39,8 @@ while 1:
 #        payload = '{ "timestamp": "' + now_str + '","temperature": ' + str(data) + ' }'
         payload = {"timestamp" : now_str, "temperature" : data}
         print(payload)
-        myMQTTClient.publish("test/testing", json.dumps(payload), 1)
-        print("Published: '" + str(payload) + "' to the topic: " + "'test/testing'")
+        myMQTTClient.publish("project224/temp_data", json.dumps(payload), 1)
+        print("Published: '" + str(payload) + "' to the topic: " + "'project224/temp_data'")
         sleep(4)
     else:
         print ("Something is not right somewhere")
