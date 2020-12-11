@@ -30,16 +30,16 @@ while 1:
     now = datetime.utcnow()
     now_str = now.strftime('%Y-%m-%dT%H:%M:%SZ') #e.g. 2016-04-18T06:12:25.877Z
     #instance = dht11.DHT11(pin = 4) #BCM GPIO04
-    data = os.system("vcgencmd measure_temp | egrep -o '[0-9]*\.[0-9]*'")
+    data = str(os.system("vcgencmd measure_temp | egrep -o '[0-9]*\.[0-9]*'"))
     #result = instance.read()
     #if result.is_valid():
     if isinstance(data, float):
-        payload = '{ "timestamp": "' + now_str + '","temperature": ' + str(data) + ' }'
-#        payload = {"temperature" : data}
-        print(payload2)
-        myMQTTClient.publish("test/testing", payload)
-        print("Published: '" + payload + "' to the topic: " + "'test/testing'")
+#        payload = '{ "timestamp": "' + now_str + '","temperature": ' + str(data) + ' }'
+        payload = {"timestamp" : now_str, "temperature" : data}
+        print(payload)
+        myMQTTClient.publish("test/testing", json.dumps(payload), 1)
+        print("Published: '" + str(payload) + "' to the topic: " + "'test/testing'")
         sleep(4)
     else:
-        print (".")
+        print ("Something is not right somewhere")
         sleep(1)
