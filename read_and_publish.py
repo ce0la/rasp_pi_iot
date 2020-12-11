@@ -1,4 +1,4 @@
-import os
+import subprocess
 import json
 import RPi.GPIO as GPIO
 import dht11
@@ -31,8 +31,8 @@ while 1:
     now = datetime.utcnow()
     now_str = now.strftime('%Y-%m-%dT%H:%M:%SZ') #e.g. 2016-04-18T06:12:25.877Z
     #instance = dht11.DHT11(pin = 4) #BCM GPIO04
-    temp = os.system("vcgencmd measure_temp | egrep -o '[0-9]*\.[0-9]*'")
-    data = str(temp)
+    temp = subprocess.check_output("vcgencmd measure_temp | egrep -o '[0-9]*\.[0-9]*'", shell=True)
+    data = float(temp)
     #result = instance.read()
     #if result.is_valid():
     if True:
