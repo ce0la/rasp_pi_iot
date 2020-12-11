@@ -37,7 +37,7 @@ while 1:
         #payload2 = '{ "timestamp": "' + now_str + '","temperature": ' + str(result.temperature) + ',"humidity": '+ str(result.humidity) + ' }'
         payload = {"temperature" : data}
         print(payload)
-        myMQTTClient.publish("test/testing", json.dumps(payload), 0)
+        myMQTTClient.publish("test/testing", json.dumps(payload), 1)
         sleep(4)
     else:
         print (".")
