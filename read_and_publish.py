@@ -28,10 +28,12 @@ myMQTTClient.publish("test/testing", "connected", 0)
 while 1:
     now = datetime.utcnow()
     now_str = now.strftime('%Y-%m-%dT%H:%M:%SZ') #e.g. 2016-04-18T06:12:25.877Z
-    instance = dht11.DHT11(pin = 4) #BCM GPIO04
-    result = instance.read()
-    if result.is_valid():
-        payload = '{ "timestamp": "' + now_str + '","temperature": ' + str(result.temperature) + ',"humidity": '+ str(result.humidity) + ' }'
+    #instance = dht11.DHT11(pin = 4) #BCM GPIO04
+    #result = instance.read()
+    #if result.is_valid():
+    if 2 > 1:
+        #payload2 = '{ "timestamp": "' + now_str + '","temperature": ' + str(result.temperature) + ',"humidity": '+ str(result.humidity) + ' }'
+        payload = "Hello World"
         print(payload)
         myMQTTClient.publish("test/testing", payload, 0)
         sleep(4)
