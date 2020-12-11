@@ -35,7 +35,7 @@ while 1:
     data = str(temp)
     #result = instance.read()
     #if result.is_valid():
-    if isinstance(temp, float):
+    if True:
 #        payload = '{ "timestamp": "' + now_str + '","temperature": ' + str(data) + ' }'
         payload = {"timestamp" : now_str, "temperature" : data}
         print(payload)
